@@ -1,6 +1,6 @@
 package com.zivame.orderapp.models;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,9 +23,10 @@ public class Order {
 	private int order_id;
 	private Date order_date;
 	private String order_status;
+	private int customer_id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false,insertable = false,updatable = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Customer customer;
 	
@@ -34,6 +35,16 @@ public class Order {
 	
 	@OneToOne(mappedBy="order",cascade = CascadeType.ALL)
 	private Payment payment;
+	
+	public Order() {
+		
+	}
+	
+	public Order(int customer_id) {
+		this.customer_id = customer_id;
+		this.order_date = new Date();
+		this.order_status = "processing";
+	}
 	
 	public Date getOrder_date() {
 		return order_date;
@@ -58,6 +69,12 @@ public class Order {
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	public int getCustomer_id() {
+		return customer_id;
+	}
+	public void setCustomer_id(int customer_id) {
+		this.customer_id = customer_id;
 	}
 		
 }

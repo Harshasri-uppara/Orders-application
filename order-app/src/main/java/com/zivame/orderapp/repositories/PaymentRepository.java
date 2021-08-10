@@ -7,5 +7,5 @@ import com.zivame.orderapp.models.Payment;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment,Integer>{
-
+	void deleteByOrderId(int order_id);
 }

@@ -1,5 +1,6 @@
 package com.zivame.orderapp.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,18 +21,33 @@ public class OrderDetails {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     //@MapsId("orderid")
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false,insertable = false,updatable = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Order order;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     //@MapsId("productid")
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, insertable = false,updatable = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Product product;
 	
-	int quantity;
-	int total_price;
+	private int quantity;
+	private int total_price;
+	@Column(name = "order_id")
+    private int orderId;
+	private int product_id;
+	
+	public OrderDetails() {
+		
+	}
+	
+	public OrderDetails(int order_id, int product_id, int quantity) {
+		this.orderId = order_id;
+		this.product_id = product_id;
+		this.quantity = quantity;
+		this.total_price = 0;
+	}
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -63,5 +79,21 @@ public class OrderDetails {
 	public void setOrder_details_id(int order_details_id) {
 		this.order_details_id = order_details_id;
 	}
+
+	public int getOrder_id() {
+		return orderId;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.orderId = order_id;
+	}
+
+	public int getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
+	}	
 	
 }

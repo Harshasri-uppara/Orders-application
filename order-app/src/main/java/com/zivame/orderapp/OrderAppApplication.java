@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan({"com.zivame.orderapp.models","com.zivame.orderapp.repositories","com.zivame.orderapp.controllers"})
+@ComponentScan({"com.zivame.orderapp.models","com.zivame.orderapp.repositories","com.zivame.orderapp.controllers","com.zivame.orderapp.service"})
 public class OrderAppApplication extends SpringBootServletInitializer{
 	
 	@Override

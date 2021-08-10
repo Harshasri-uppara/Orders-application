@@ -1,7 +1,8 @@
 package com.zivame.orderapp.models;
 
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,10 +21,23 @@ public class Payment {
 	private Date payment_date;
 	private int amount_paid;
 	
+	@Column(name = "order_id")
+    private int orderId;
+	
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="order_id", nullable = false)
+	@JoinColumn(name="order_id", nullable = false, insertable = false,updatable = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Order order;
+	
+	public Payment() {
+		
+	}
+	
+	public Payment(int order_id) {
+		this.orderId = order_id;
+		this.payment_date = new Date();
+		this.amount_paid = 0;
+	}
 
 	public int getPayment_id() {
 		return payment_id;
@@ -48,7 +62,13 @@ public class Payment {
 	public void setAmount_paid(int amount_paid) {
 		this.amount_paid = amount_paid;
 	}
+	public int getOrder_id() {
+		return orderId;
+	}
 
+	public void setOrder_id(int order_id) {
+		this.orderId = order_id;
+	}
 	public Order getOrder() {
 		return order;
 	}
