@@ -2,6 +2,8 @@
 Simple orders application to expose all CRUD api's for orders and products details etc.
 
 DataBase Schema
+<img width="859" alt="DB Schema" src="https://user-images.githubusercontent.com/85478788/128863118-3d01441c-7692-4a8f-a303-37bdacb69e94.png">
+
 
 ### Mysql setup for accessing database
 ```
