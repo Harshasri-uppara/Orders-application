@@ -8,9 +8,9 @@ CREATE TABLE customer
 CREATE TABLE product
 (
     	product_id	SERIAL PRIMARY KEY,
-	    product_name	varchar(30),
-	    product_price	int
-	    product_quantity int
+	product_name	varchar(30),
+	product_price	int
+	product_quantity int
 );
 
 CREATE TABLE orders
